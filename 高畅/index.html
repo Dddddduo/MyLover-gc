@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <title>💗高畅💗</title>
+    <audio id="bgmMusic" src="music.mp3" autoplay="autoplay" loop preload="auto" type="audio/mp3"></audio>
+    <div class="mPower"><span id="on" title="点击暂停" style=""></span><span id="off" title="点击播放" style=""></span></div>
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        canvas {
+            position: absolute;
+            width: 100%;
+        <dependency>
+            <groupId>org.xmlunit</groupId>
+            <artifactId>xmlunit-core</artifactId>
+        </dependency>
+            height: 100%;
+        }
+
+        #pinkboard {
+            animation: anim 1.5s ease-in-out infinite;
+            -webkit-animation: anim 1.5s ease-in-out infinite;
+            -o-animation: anim 1.5s ease-in-out infinite;
+            -moz-animation: anim 1.5s ease-in-out infinite;
+        }
+
+        @keyframes anim {
+            0% {
+                transform: scale(0.8);
+            }
+
+            25% {
+                transform: scale(0.7);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(0.7);
+            }
+
+            100% {
+                transform: scale(0.8);
+            }
+        }
+
+        @-webkit-keyframes anim {
+            0% {
+                -webkit-transform: scale(0.8);
+            }
+
+            25% {
+                -webkit-transform: scale(0.7);
+            }
+
+            50% {
+                -webkit-transform: scale(1);
+            }
+
+            75% {
+                -webkit-transform: scale(0.7);
+            }
+
+            100% {
+                -webkit-transform: scale(0.8);
+            }
+        }
+
+        @-o-keyframes anim {
+            0% {
+                -o-transform: scale(0.8);
+            }
+
+            25% {
+                -o-transform: scale(0.7);
+            }
+
+            50% {
+                -o-transform: scale(1);
+            }
+
+            75% {
+                -o-transform: scale(0.7);
+            }
+
+            100% {
+                -o-transform: scale(0.8);
+            }
+        }
+
+        @-moz-keyframes anim {
+            0% {
+                -moz-transform: scale(0.8);
+            }
+
+            25% {
+                -moz-transform: scale(0.7);
+            }
+
+            50% {
+                -moz-transform: scale(1);
+            }
+
+            75% {
+                -moz-transform: scale(0.7);
+            }
+
+            100% {
+                -moz-transform: scale(0.8);
+            }
+        }
+
+        #name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: -20px;
+            font-size: 46px;
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+<canvas id="pinkboard" width="1920" height="947"></canvas>
+<div>
+    <div id="name">❤高畅❤</div>
+    <canvas id="canvas" width="1920" height="947"></canvas>
+
+    <div class="footer">
+        <a>北华大学大数据应用与开发工作室</a>
+        <a>苏ICP备2024124094</a>
+        <a>2024-9-30</a>
+    </div>
+</div>
+
+<style>
+    .footer {
+        position: absolute;
+        bottom: 0; /* 靠底部 */
+        width: 100%; /* 宽度100% */
+        padding: 20px; /* 内边距 */
+        text-align: center; /* 居中对齐 */
+        color: aqua;
+    }
+</style>
+
+<style>
+    body, li, span, p {
+        cursor: url(mouth.cur), auto;
+    }
+</style>
+
+<script type="text/javascript">
+    const colors = [
+        "#eec996",
+        "#8fb7d3",
+        "#b7d4c6",
+        "#c3bedd",
+        "#f1d5e4",
+        "#cae1d3",
+        "#f3c89d",
+        "#d0b0c3",
+        "#819d53",
+        "#c99294",
+        "#cec884",
+        "#ff8e70",
+        "#e0a111",
+        "#fffdf6",
+        "#cbd7ac",
+        "#e8c6c0",
+        "#dc9898",
+        "#ecc8ba",
+    ];
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    let count = 1;
+
+    var ww = window.innerWidth;
+    var wh = window.innerHeight;
+
+    var hearts = [];
+
+    function init() {
+        requestAnimationFrame(render);
+        canvas.width = ww;
+        canvas.height = wh;
+        for (var i = 0; i < 100; i++) {
+            hearts.push(new Heart());
+        }
+    }
+
+    function Heart() {
+        this.x = Math.random() * ww;
+        this.y = Math.random() * wh;
+        this.opacity = Math.random() * 0.5 + 0.5;
+        this.vel = {
+            x: (Math.random() - 0.5) * 4,
+            y: (Math.random() - 0.5) * 4,
+        };
+        this.targetScale = Math.random() * 0.15 + 0.02;
+        this.scale = this.targetScale * Math.random();
+    }
+
+    Heart.prototype.update = function (i) {
+        this.x += this.vel.x;
+        this.y += this.vel.y;
+
+        this.scale += (this.targetScale - this.scale) * 0.01;
+        if (this.x - this.width > ww || this.x + this.width < 0) {
+            this.scale = 0;
+            this.x = Math.random() * ww;
+        }
+        if (this.y - this.height > wh || this.y + this.height < 0) {
+            this.scale = 0;
+            this.y = Math.random() * wh;
+        }
+        this.width = 470;
+        this.height = 400;
+    };
+    Heart.prototype.draw = function (i) {
+        ctx.globalAlpha = this.opacity;
+        ctx.font = `${180 * this.scale}px "微软雅黑"`;
+        ctx.fillStyle = colors[i % 18];
+        ctx.fillText(
+            "❤高畅❤",
+            this.x - this.width * 0.5,
+            this.y - this.height * 0.5,
+            this.width,
+            this.height
+        );
+    };
+
+    function render() {
+        ctx.clearRect(0, 0, ww, wh);
+        for (var i = 0; i < 100; i++) {
+            hearts[i].update(i);
+            hearts[i].draw(i);
+        }
+        requestAnimationFrame(render);
+    }
+    init();
+
+
+    window.addEventListener("resize", function () {
+        ww = window.innerWidth;
+        wh = window.innerHeight;
+    });
+</script>
+
+<!--鼠标点击效果-->
+<script src="dianji.js"></script>
+
+<!--悬浮爱心效果-->
+<script src="xuanfu.js"></script>
+
+
+</script>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+    let ac = new AudioContext();
+
+    $(function (){
+        $("body").click(function(e) {
+            const $i = $("<span/>").text("高畅"); // 随机选择文本
+            const x = e.pageX,
+                y = e.pageY;
+            $i.css({
+                "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "color": color16(),
+                "font-size": "80px"  // 设置文字大小
+            });
+            $("body").append($i);
+            load_sound('voice.mp3');
+            $i.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                1500,
+                function() {
+                    $i.remove();
+                });
+        });
+    });
+
+    function color16(){
+        const r = Math.floor(Math.random()*256);
+        const g = Math.floor(Math.random()*256);
+        const b = Math.floor(Math.random()*256);
+        return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+    }
+
+    function load_sound(url_data) {
+        const req = new XMLHttpRequest();
+        req.open('GET', url_data, true);
+        req.responseType = 'arraybuffer';
+        req.onload = function() {
+            ac.decodeAudioData(req.response, function(buffer){
+                const source = ac.createBufferSource();
+                source.buffer = buffer;
+                source.connect(ac.destination);
+                source.start(0);
+            },function (e) {
+                console.info('错误');
+            });
+        }
+        req.send();
+    }
+    var OriginTitle = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            // $('[rel="icon"]').attr('href', "/funny.ico");
+            document.title = '不可以忘记我哦';
+            clearTimeout(titleTime);
+        }
+        else {
+            $('[rel="icon"]').attr('href', "/favicon.ico");
+            document.title = '(ฅ>ω<*ฅ)~' + OriginTitle;
+            titleTime = setTimeout(function () {
+                document.title = OriginTitle;
+            }, 2000);
+        }
+    });
+
+</script>
+</body>
+
+</html>
