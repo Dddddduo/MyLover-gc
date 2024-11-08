@@ -1,0 +1,106 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>狗修金～(∠・ω< )⌒★</title>
+    <link rel="shortcut icon" href="./06.ico" />
+</head>
+<style>
+    .center {
+        width: 540px;
+        height: 120px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+</style>
+<body>
+    <div>
+        <marquee behavior="scroll" direction="left" scrollamount="30"><font color="red" size="15px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="15"><font color="aqua" size="11px">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="25"><font>狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="12"><font color="coral" size="10px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="28"><font color="red">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="20"><font color="greenyellow" size="13px">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="10"><font size="16px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="15"><font color="pink" size="20px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="11"><font color="aqua" size="6px">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="28"><font color="red">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="8"><font color="greenyellow" size="10px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="20"><font color="pink" size="9px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="13"><font color="green" size="5px">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="17"><font color="blue" size="5px">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="16"><font color="yellow" size="7px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="11"><font color="red" size="5px">狗修金～(∠・ω< )⌒★</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="10"><font color="orange" size="8px">狗修金～(∠・ω< )⌒☆</font></marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="20"><font color="gray" size="9px">狗修金～(∠・ω< )⌒★</font></marquee>
+    </div>
+    <div id="main" class="center">
+        <img src="ciallo.gif">
+    </div>
+    <div style="text-align: center;">
+        <a href="https://beian.miit.gov.cn/">苏ICP备2024124094</a>
+    </div>
+</body>
+</html>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    let a_idx = 0;
+
+    let ac = new AudioContext();
+
+    $(function (){
+        $("body").click(function(e) {
+            const a = new Array("狗修金～(∠・ω< )⌒★", "狗修金～(∠・ω< )⌒☆");
+            const $i = $("<span/>").text(a[a_idx]);
+            a_idx = (a_idx + 1) % a.length;
+            const x = e.pageX,
+                y = e.pageY;
+            $i.css({
+                "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+                "top": y - 20,
+                "left": x,
+                "position": "absolute",
+                "font-weight": "bold",
+                "color": color16()
+            });
+            $("body").append($i);
+            load_sound('voice.mp3');
+            $i.animate({
+                    "top": y - 180,
+                    "opacity": 0
+                },
+                1500,
+                function() {
+                    $i.remove();
+                });
+        });
+    })
+
+    function color16(){
+        const r = Math.floor(Math.random()*256);
+        const g = Math.floor(Math.random()*256);
+        const b = Math.floor(Math.random()*256);
+        return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+    }
+
+    function load_sound(url_data) {
+        const req = new XMLHttpRequest();
+        req.open('GET', url_data, true);
+        req.responseType = 'arraybuffer';
+        req.onload = function() {
+            ac.decodeAudioData(req.response, function(buffer){
+                const source = ac.createBufferSource();
+                source.buffer = buffer;
+                source.connect(ac.destination);
+                source.start(0);
+            },function (e) {
+                console.info('错误');
+            });
+        }
+        req.send();
+    }
+</script>
